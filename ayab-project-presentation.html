@@ -1021,7 +1021,7 @@
             console.log('Video yükleniyor...');
             
             videoPlaceholder.innerHTML = `
-                <video controls autoplay style="width: 100%; height: 100%; object-fit: contain; background: #000; border-radius: 12px;">
+                <video controls muted style="width: 100%; height: 100%; object-fit: contain; background: #000; border-radius: 12px;">
                     <source src="ayab-video.mp4" type="video/mp4">
                     <p style="color: #ffffff; text-align: center; padding: 2rem;">
                         Tarayıcınız video oynatmayı desteklemiyor.<br>
@@ -1035,13 +1035,14 @@
                 const video = videoPlaceholder.querySelector('video');
                 if (video) {
                     console.log('Video elementi bulundu, oynatılıyor...');
+                    video.load(); // Video'yu yükle
                     video.play().catch(err => {
-                        console.log('Video otomatik oynatılamadı:', err);
+                        console.log('Video otomatik oynatılamadı, manuel oynatma gerekli:', err);
                     });
                 } else {
                     console.error('Video elementi bulunamadı!');
                 }
-            }, 100);
+            }, 500);
         }
 
         // Modal functions
